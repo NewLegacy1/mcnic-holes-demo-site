@@ -3,7 +3,7 @@ import React from 'react';
 
 const Header: React.FC = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-slate/90 backdrop-blur-md border-b-2 border-zinc-900 h-20 flex items-center">
+    <header className="fixed top-10 left-0 right-0 z-50 bg-brand-slate/90 backdrop-blur-md border-b-2 border-zinc-900 h-20 flex items-center">
       <div className="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
         <a href="/" className="flex items-center">
           <img 
