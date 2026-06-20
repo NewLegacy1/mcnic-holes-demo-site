@@ -1,117 +1,151 @@
 
-import React from 'react';
-import { Terminal, Phone, MapPin, Mail, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone } from 'lucide-react';
+
+const serviceOptions = [
+  'Post Holes Only',
+  'Deck Piers',
+  'Full Fence Installation',
+  'Deck Build',
+];
 
 const Footer: React.FC = () => {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
-    <footer id="footer" className="bg-brand-slate text-white pt-40 pb-16 px-6 relative border-t-4 border-zinc-900 overflow-hidden">
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-24 mb-32">
-          
+    <footer id="footer" className="py-16 md:py-24 px-6 border-t border-white/5 bg-[#0e0e0e]">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           <div>
-            <div className="flex items-center gap-4 mb-10">
-              <Terminal size={24} className="text-brand-blue" />
-              <span className="font-tech text-xs font-bold text-brand-blue uppercase tracking-[0.5em]">PROJECT REQUEST</span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.85] mb-12">
-              REQUEST <br /> YOUR <br /> <span className="text-brand-blue italic">QUOTE.</span>
+            <span className="section-label">Contact</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight">
+              Get a free quote
             </h2>
-            
-            <div className="space-y-12">
-              <a href="tel:7057967789" className="group flex items-center gap-8">
-                <div className="w-20 h-20 embossed-tag flex items-center justify-center rounded-sm transition-all group-hover:border-brand-blue">
-                   <Phone size={28} className="text-brand-blue" />
+            <p className="mt-4 text-base text-zinc-400 leading-relaxed max-w-md">
+              Tell us about your project and we will get back to you within one business day.
+            </p>
+
+            <div className="mt-8 space-y-6">
+              <a href="tel:7057967789" className="flex items-center gap-4 group">
+                <div className="w-12 h-12 rounded-md bg-white/5 flex items-center justify-center">
+                  <Phone size={20} className="text-brand-blue" />
                 </div>
-                <div className="flex flex-col">
-                  <span className="font-tech text-[10px] text-zinc-600 font-bold uppercase tracking-[0.4em]">CALL OR TEXT</span>
-                  <span className="text-3xl md:text-4xl font-black tracking-tighter group-hover:text-brand-blue transition-colors font-tech">(705) 796-7789</span>
+                <div>
+                  <p className="text-sm text-zinc-500">Call or text</p>
+                  <p className="text-xl font-semibold group-hover:text-brand-blue transition-colors">
+                    (705) 796-7789
+                  </p>
                 </div>
               </a>
-              
-              <div className="flex items-center gap-6 text-zinc-500 font-tech text-xs font-bold uppercase tracking-widest">
-                <MapPin size={16} /> 11 VINE CRES, BARRIE, ONTARIO
+
+              <div className="flex items-center gap-3 text-sm text-zinc-500">
+                <MapPin size={16} className="text-brand-blue shrink-0" />
+                11 Vine Cres, Barrie, Ontario
               </div>
             </div>
           </div>
 
-          <div className="heavy-card p-12 bg-[#121212] border-zinc-800">
-             <form className="space-y-10" onSubmit={(e) => e.preventDefault()}>
-               <div className="space-y-4">
-                 <label className="block font-tech text-[10px] text-zinc-600 uppercase font-bold tracking-widest">Name</label>
-                 <input 
-                  type="text" 
-                  placeholder="Your Full Name" 
-                  className="w-full bg-brand-slate border-2 border-zinc-800 p-6 font-tech text-xs text-white placeholder:text-zinc-800 outline-none focus:border-brand-blue transition-colors"
-                 />
-               </div>
-               
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                 <div className="space-y-4">
-                    <label className="block font-tech text-[10px] text-zinc-600 uppercase font-bold tracking-widest">Phone or Email</label>
-                    <input 
-                      type="text" 
-                      placeholder="How to reach you" 
-                      className="w-full bg-brand-slate border-2 border-zinc-800 p-6 font-tech text-xs text-white placeholder:text-zinc-800 outline-none focus:border-brand-blue transition-colors"
+          <div className="surface-card p-6 md:p-8">
+            {submitted ? (
+              <div className="py-12 text-center">
+                <h3 className="text-xl font-bold text-white mb-2">Thanks — we got your request</h3>
+                <p className="text-sm text-zinc-500">We will be in touch within one business day.</p>
+              </div>
+            ) : (
+              <form
+                className="space-y-5"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setSubmitted(true);
+                }}
+              >
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-zinc-400 mb-1.5">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your name"
+                    className="w-full bg-[#121212] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-brand-blue transition-colors"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact" className="block text-sm font-medium text-zinc-400 mb-1.5">
+                      Phone or email
+                    </label>
+                    <input
+                      id="contact"
+                      name="contact"
+                      type="text"
+                      required
+                      placeholder="How to reach you"
+                      className="w-full bg-[#121212] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-brand-blue transition-colors"
                     />
-                 </div>
-                 <div className="space-y-4">
-                    <label className="block font-tech text-[10px] text-zinc-600 uppercase font-bold tracking-widest">Work Needed</label>
-                    <div className="relative">
-                      <select className="w-full bg-brand-slate border-2 border-zinc-800 p-6 font-tech text-xs text-white outline-none focus:border-brand-blue transition-colors appearance-none cursor-pointer">
-                        <option className="bg-brand-slate">Post Holes Only</option>
-                        <option className="bg-brand-slate">Deck Piers</option>
-                        <option className="bg-brand-slate">Full Fence Installation</option>
-                        <option className="bg-brand-slate">Deck Build</option>
-                      </select>
-                      <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <ArrowRight size={14} className="rotate-90 text-zinc-600" />
-                      </div>
-                    </div>
-                 </div>
-               </div>
+                  </div>
+                  <div>
+                    <label htmlFor="service" className="block text-sm font-medium text-zinc-400 mb-1.5">
+                      Work needed
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      className="w-full bg-[#121212] border border-white/10 rounded-md px-4 py-3 text-sm text-white outline-none focus:border-brand-blue transition-colors"
+                    >
+                      {serviceOptions.map((option) => (
+                        <option key={option} value={option} className="bg-[#121212]">
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
 
-               <div className="space-y-4">
-                 <label className="block font-tech text-[10px] text-zinc-600 uppercase font-bold tracking-widest">Tell us about your project</label>
-                 <textarea 
-                  rows={4}
-                  placeholder="Number of holes, length of fence, deck size, etc." 
-                  className="w-full bg-brand-slate border-2 border-zinc-800 p-6 font-tech text-xs text-white placeholder:text-zinc-800 outline-none focus:border-brand-blue transition-colors"
-                 ></textarea>
-               </div>
+                <div>
+                  <label htmlFor="details" className="block text-sm font-medium text-zinc-400 mb-1.5">
+                    Project details
+                  </label>
+                  <textarea
+                    id="details"
+                    name="details"
+                    rows={4}
+                    placeholder="Number of holes, fence length, deck size..."
+                    className="w-full bg-[#121212] border border-white/10 rounded-md px-4 py-3 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-brand-blue transition-colors resize-none"
+                  />
+                </div>
 
-               <button className="w-full bg-brand-blue text-brand-slate py-8 font-black uppercase tracking-[0.5em] text-xs flex items-center justify-center gap-4 hover:bg-white transition-all">
-                  SUBMIT QUOTE REQUEST <ArrowRight size={18} />
-               </button>
-             </form>
-          </div>
-
-        </div>
-
-        <div className="pt-20 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex items-center gap-8">
-             <img 
-               src="https://static.wixstatic.com/media/2553e9_03c98aff8f384c50b3e8195286956762~mv2.png/v1/crop/x_21,y_0,w_1521,h_1563/fill/w_167,h_167,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/McNic-Holes-Logo-2025_edited.png" 
-               alt="Footer Logo" 
-               className="h-10 w-auto grayscale opacity-20"
-             />
-             <div className="font-tech text-[9px] text-zinc-700 font-bold uppercase tracking-[0.4em]">
-                &copy; 2025 MCNIC HOLES PRECISION OPERATIONS. BARRIE ON.
-             </div>
-          </div>
-          
-          <div className="flex gap-12 font-tech text-[10px] text-zinc-600 font-bold uppercase tracking-widest">
-            <a href="#" className="hover:text-brand-blue transition-colors">INSTAGRAM</a>
-            <a href="#" className="hover:text-brand-blue transition-colors">FACEBOOK</a>
+                <button type="submit" className="btn-primary w-full">
+                  Send request
+                </button>
+              </form>
+            )}
           </div>
         </div>
-      </div>
 
-      {/* Background Stamped Text */}
-      <div className="absolute top-1/2 left-0 w-full overflow-hidden pointer-events-none opacity-[0.02] -translate-y-1/2 select-none">
-        <span className="text-[30vw] font-black uppercase whitespace-nowrap tracking-tighter leading-none">
-          SECURE GROUND
-        </span>
+        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-4">
+            <img
+              src="https://static.wixstatic.com/media/2553e9_03c98aff8f384c50b3e8195286956762~mv2.png/v1/crop/x_21,y_0,w_1521,h_1563/fill/w_167,h_167,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/McNic-Holes-Logo-2025_edited.png"
+              alt="McNic Holes"
+              className="h-8 w-auto opacity-40"
+            />
+            <span className="text-sm text-zinc-600">
+              &copy; 2026 McNic Holes · Barrie, ON
+            </span>
+          </div>
+          <div className="flex gap-6 text-sm text-zinc-500">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              Instagram
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              Facebook
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

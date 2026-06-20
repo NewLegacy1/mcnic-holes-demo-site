@@ -1,68 +1,65 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Award, ShieldCheck, TrendingDown, Map } from 'lucide-react';
+import { Award, Map, ShieldCheck, TrendingDown } from 'lucide-react';
+import SectionHeader from './SectionHeader';
+
+const pillars = [
+  {
+    icon: Award,
+    title: '10+ years experience',
+    desc: 'Deck and fence builds across Simcoe County.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Insured & certified',
+    desc: 'WSIB compliant with full liability coverage.',
+  },
+  {
+    icon: TrendingDown,
+    title: '15% lumber savings',
+    desc: 'Trade pricing on structural lumber, delivered to site.',
+  },
+  {
+    icon: Map,
+    title: 'Utility clearance',
+    desc: 'Every dig starts with verified line locations.',
+  },
+];
 
 const ValueProposition: React.FC = () => {
   return (
-    <section className="py-32 px-6 bg-white relative">
+    <section className="py-16 md:py-24 px-6 bg-[#0e0e0e]">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-7">
-            <span className="font-tech text-xs uppercase tracking-[0.4em] text-brand-blue mb-4 block font-bold">THE_UNFAIR_ADVANTAGE</span>
-            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter font-tight leading-[0.9] text-brand-slate mb-10">
-              DIG DEEPER. <br /> <span className="text-brand-blue">SAVE MORE.</span>
-            </h2>
-            <p className="text-xl text-brand-slate/70 leading-relaxed mb-12 font-medium">
-              Why pay retail? At McNic Holes, we’ve spent a decade streamlining the build process. By handling the precision digging and leveraging our preferred lumber partnerships, we remove the two biggest hurdles of your project: Labor and Material Costs.
-            </p>
-            
-            <div className="grid sm:grid-cols-2 gap-x-12 gap-y-12">
-              <div className="space-y-3 group">
-                <div className="flex items-center gap-3 text-brand-blue">
-                  <Award size={22} />
-                  <span className="font-black uppercase tracking-widest text-sm text-brand-slate group-hover:text-brand-blue transition-colors">10+ Years Expertise</span>
-                </div>
-                <p className="text-sm text-brand-slate/50 leading-relaxed">A decade of structural certainty for deck and fence builds across Simcoe County.</p>
-              </div>
-              
-              <div className="space-y-3 group">
-                <div className="flex items-center gap-3 text-brand-blue">
-                  <ShieldCheck size={22} />
-                  <span className="font-black uppercase tracking-widest text-sm text-brand-slate group-hover:text-brand-blue transition-colors">Insured & Certified</span>
-                </div>
-                <p className="text-sm text-brand-slate/50 leading-relaxed">WSIB compliant and fully insured operations. We manage the risk so you don't have to.</p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <SectionHeader
+              label="Why McNic Holes"
+              title="Quality work,"
+              highlight="fair pricing."
+              description="We handle the digging and the build, and pass lumber savings on to you through our supplier partnerships."
+            />
 
-              <div className="space-y-3 group">
-                <div className="flex items-center gap-3 text-brand-blue">
-                  <TrendingDown size={22} />
-                  <span className="font-black uppercase tracking-widest text-sm text-brand-slate group-hover:text-brand-blue transition-colors">The 15% Edge</span>
+            <div className="grid sm:grid-cols-2 gap-6">
+              {pillars.map((pillar) => (
+                <div key={pillar.title} className="flex gap-3">
+                  <div className="w-9 h-9 rounded-md bg-white/5 flex items-center justify-center shrink-0">
+                    <pillar.icon size={18} className="text-brand-blue" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-white">{pillar.title}</h3>
+                    <p className="mt-1 text-sm text-zinc-500 leading-relaxed">{pillar.desc}</p>
+                  </div>
                 </div>
-                <p className="text-sm text-brand-slate/50 leading-relaxed">Preferred industrial pricing on top-tier wood. Exclusive material savings for every client.</p>
-              </div>
-
-              <div className="space-y-3 group">
-                <div className="flex items-center gap-3 text-brand-blue">
-                  <Map size={22} />
-                  <span className="font-black uppercase tracking-widest text-sm text-brand-slate group-hover:text-brand-blue transition-colors">Utility Precision</span>
-                </div>
-                <p className="text-sm text-brand-slate/50 leading-relaxed">Zero-risk digging protocol with full hydro, gas, and water line verification.</p>
-              </div>
+              ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <div className="excavated aspect-square bg-brand-slate/5 flex items-center justify-center p-12 border border-brand-slate/10 group overflow-hidden relative">
-               <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <div className="grid-bg h-full w-full"></div>
-               </div>
-               <div className="text-center relative z-10">
-                  <div className="font-tech text-7xl md:text-9xl font-black text-brand-blue mb-4 tracking-tighter">15%</div>
-                  <div className="text-brand-slate font-black uppercase tracking-[0.3em] text-2xl">SAVINGS_VERIFIED</div>
-                  <div className="h-[2px] w-24 bg-brand-blue mx-auto mt-10"></div>
-               </div>
-            </div>
+          <div className="surface-card p-10 md:p-12 text-center">
+            <p className="text-sm font-semibold text-brand-blue mb-2">Material savings</p>
+            <div className="text-7xl md:text-8xl font-bold text-brand-blue leading-none">15%</div>
+            <p className="mt-4 text-base text-zinc-400 max-w-xs mx-auto leading-relaxed">
+              Off structural lumber on active season projects, delivered straight to your build site.
+            </p>
           </div>
         </div>
       </div>
